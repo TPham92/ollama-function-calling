@@ -1,7 +1,7 @@
 import ollama from "ollama";
 import { toolsString, executeFunction } from "./tools";
 
-const promptandanswer = async (prompt) => {
+const promptandanswer = async (prompt: string) => {
   const response = await ollama.generate({
     model: "llama3.1",
     system: systemPrompt,
