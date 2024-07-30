@@ -1,22 +1,9 @@
-import { Ollama } from "ollama";
+import ollama from "ollama";
 import { toolsString, executeFunction } from "./tools";
-
-console.log(`Connecting to Ollama at ${process.env.OLLAMA_HOST}`);
-
-const ollama = new Ollama({
-  host: process.env.OLLAMA_HOST,
-  fetch: (url, options = {}) => {
-    options.headers = {
-      ...options.headers,
-      Authorization: `Bearer ${process.env.OLLAMA_API_KEY}`,
-    };
-    return fetch(url, options);
-  },
-});
 
 const promptandanswer = async (prompt) => {
   const response = await ollama.generate({
-    model: "llama3",
+    model: "llama3.1",
     system: systemPrompt,
     prompt: prompt,
     stream: false,
